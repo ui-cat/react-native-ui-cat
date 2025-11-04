@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Text } from '@ui-kitten/components';
+import { Card, Text } from '@ui-cat/components';
 
 export const CardSimpleUsageShowcase = (): React.ReactElement => (
   <Card>

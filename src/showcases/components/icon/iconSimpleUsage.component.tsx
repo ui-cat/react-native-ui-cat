@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Icon, IconElement } from '@ui-kitten/components';
+import { Icon, IconElement } from '@ui-cat/components';
 
 export const IconSimpleUsageShowcase = (): IconElement => (
   <Icon

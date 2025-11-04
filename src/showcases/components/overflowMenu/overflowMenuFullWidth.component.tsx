@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Button, Layout, MenuItem, OverflowMenu } from '@ui-kitten/components';
+import { Button, Layout, MenuItem, OverflowMenu } from '@ui-cat/components';
 
 export const OverflowMenuFullWidthShowcase = (): React.ReactElement => {
 
@@ -44,4 +44,3 @@ const styles = StyleSheet.create({
     minHeight: 144,
   },
 });
-

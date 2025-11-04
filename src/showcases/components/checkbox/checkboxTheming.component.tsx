@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { CheckBox, Layout } from '@ui-kitten/components';
+import { CheckBox, Layout } from '@ui-cat/components';
 
 export const CheckboxThemingShowcase = (): React.ReactElement => {
 

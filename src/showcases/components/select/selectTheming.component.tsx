@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Icon, IconElement, IndexPath, Layout, Select, SelectItem } from '@ui-kitten/components';
+import { Icon, IconElement, IndexPath, Layout, Select, SelectItem } from '@ui-cat/components';
 
 const StarIcon = (props): IconElement => (
   <Icon
@@ -56,4 +56,3 @@ const styles = StyleSheet.create({
     minHeight: 128,
   },
 });
-

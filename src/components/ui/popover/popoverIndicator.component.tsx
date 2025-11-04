@@ -12,7 +12,7 @@ import {
   ViewProps,
   ViewStyle,
 } from 'react-native';
-import { StyleType } from '@ui-kitten/components';
+import { StyleType } from '@ui-cat/components';
 
 export type PopoverIndicatorProps = ViewProps;
 export type PopoverIndicatorElement = React.ReactElement<PopoverIndicatorProps>;

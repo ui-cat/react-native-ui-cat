@@ -109,7 +109,7 @@ export type ButtonElement = React.ReactElement<ButtonProps>;
  * @overview-example ButtonStyling
  * Button and it's inner views can be styled by passing them as function components.
  * ```
- * import { Button, Text } from '@ui-kitten/components';
+ * import { Button, Text } from '@ui-cat/components';
  *
  * <Button style={...}>
  *   {evaProps => <Text {...evaProps}>BUTTON</Text>}

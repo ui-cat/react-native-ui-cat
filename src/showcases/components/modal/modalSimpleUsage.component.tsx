@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Button, Card, Layout, Modal, Text } from '@ui-kitten/components';
+import { Button, Card, Layout, Modal, Text } from '@ui-cat/components';
 
 export const ModalSimpleUsageShowcase = (): React.ReactElement => {
 

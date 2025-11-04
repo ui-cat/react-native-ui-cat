@@ -9,7 +9,7 @@ const frameworkModules = [
 ];
 
 const moduleDependencies = [
-  // @ui-kitten/components
+  // @ui-cat/components
   path.resolve(env.EVA_PATH, 'eva'),
   path.resolve(env.EVA_PATH, 'processor'),
   path.resolve(__dirname, '../../node_modules/@ui-cat/eva-design-dss'),
@@ -17,14 +17,14 @@ const moduleDependencies = [
   path.resolve(__dirname, '../../node_modules/lodash.merge'),
   path.resolve(__dirname, '../../node_modules/fecha'),
 
-  // @ui-kitten/eva-icons
+  // @ui-cat/eva-icons
   path.resolve(__dirname, '../../node_modules/react-native-eva-icons'),
   path.resolve(__dirname, '../../node_modules/react-native-svg'),
 
-  // @ui-kitten/moment
+  // @ui-cat/moment
   path.resolve(__dirname, '../../node_modules/moment'),
 
-  // @ui-kitten/date-fns
+  // @ui-cat/date-fns
   path.resolve(__dirname, '../../node_modules/date-fns'),
 
   // external

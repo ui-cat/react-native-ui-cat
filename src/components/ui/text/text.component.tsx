@@ -75,7 +75,7 @@ export type TextElement = React.ReactElement<TextProps>;
  * Text can be styled with `style` property.
  * In most cases this is redundant, if [custom theme is configured](guides/branding).
  * ```
- * import { Text } from '@ui-kitten/components';
+ * import { Text } from '@ui-cat/components';
  *
  * <Text style={...}>Place your Text</Text>
  * ```

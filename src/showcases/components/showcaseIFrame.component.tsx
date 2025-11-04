@@ -1,6 +1,6 @@
 import React from 'react';
 import { LayoutChangeEvent, StyleSheet, View } from 'react-native';
-import { Card, Text } from '@ui-kitten/components';
+import { Card, Text } from '@ui-cat/components';
 import { ShowcaseSettings } from './showcaseSettings.component';
 
 const ShowcaseCaption = (props): React.ReactElement => (

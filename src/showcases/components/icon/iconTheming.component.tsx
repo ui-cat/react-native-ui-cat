@@ -1,6 +1,6 @@
 import React from 'react';
 import { ImageProps, StyleSheet } from 'react-native';
-import { Button, Icon, IconElement, Layout } from '@ui-kitten/components';
+import { Button, Icon, IconElement, Layout } from '@ui-cat/components';
 
 export const IconThemingShowcase = (): React.ReactElement => {
 

@@ -8,10 +8,10 @@ const evaModules = {
 };
 
 const frameworkModules = {
-  '@ui-kitten/components': path.resolve(__dirname, '../components'),
-  '@ui-kitten/date-fns': path.resolve(__dirname, '../date-fns'),
-  '@ui-kitten/eva-icons': path.resolve(__dirname, '../eva-icons'),
-  '@ui-kitten/moment': path.resolve(__dirname, '../moment'),
+  '@ui-cat/components': path.resolve(__dirname, '../components'),
+  '@ui-cat/date-fns': path.resolve(__dirname, '../date-fns'),
+  '@ui-cat/eva-icons': path.resolve(__dirname, '../eva-icons'),
+  '@ui-cat/moment': path.resolve(__dirname, '../moment'),
 };
 
 const moduleResolverConfig = {

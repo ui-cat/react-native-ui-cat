@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Layout, Radio } from '@ui-kitten/components';
+import { Layout, Radio } from '@ui-cat/components';
 
 export const RadioThemingShowcase = (): React.ReactElement => {
 
@@ -48,4 +48,3 @@ const styles = StyleSheet.create({
     margin: 2,
   },
 });
-

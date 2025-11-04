@@ -18,12 +18,12 @@ import {
   EvaStatus,
   LiteralUnion,
   Overwrite,
-} from '@ui-kitten/components/devsupport';
+} from '@ui-cat/components/devsupport';
 import {
   styled,
   StyledComponentProps,
   StyleType,
-} from '@ui-kitten/components';
+} from '@ui-cat/components';
 import { ProgressBarAnimation, ProgressBarAnimationConfig } from './animation';
 
 type ProgressBarStyledProps = Overwrite<StyledComponentProps, {
@@ -209,5 +209,3 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
 });
-
-

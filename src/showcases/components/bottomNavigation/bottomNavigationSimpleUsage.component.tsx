@@ -1,5 +1,5 @@
 import React from 'react';
-import { BottomNavigation, BottomNavigationTab, Text } from '@ui-kitten/components';
+import { BottomNavigation, BottomNavigationTab, Text } from '@ui-cat/components';
 import { StyleSheet, View } from 'react-native';
 
 export const BottomNavigationSimpleUsageShowcase = (): React.ReactElement => {

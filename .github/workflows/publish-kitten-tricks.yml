@@ -82,7 +82,7 @@ jobs:
 
       - name: Get Expo App link
         id: expo
-        run: echo "::set-output name=path::@ui-kitten/kitten-tricks?release-channel=pr-ui-kitten-${{ github.event.number }}"
+        run: echo "::set-output name=path::@ui-cat/kitten-tricks?release-channel=pr-ui-kitten-${{ github.event.number }}"
 
       - name: Comment on PR
         uses: unsplash/comment-on-pr@master

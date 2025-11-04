@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Text } from '@ui-kitten/components';
+import { Calendar, Text } from '@ui-cat/components';
 
 export const CalendarSimpleUsageShowcase = (): React.ReactElement => {
 

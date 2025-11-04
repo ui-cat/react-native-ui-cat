@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListRenderItemInfo, StyleSheet, View } from 'react-native';
-import { Card, List, Text } from '@ui-kitten/components';
+import { Card, List, Text } from '@ui-cat/components';
 
 const data = new Array(8).fill({
   title: 'Item',

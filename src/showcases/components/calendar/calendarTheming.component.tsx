@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Calendar, Layout, RangeCalendar, Text } from '@ui-kitten/components';
+import { Calendar, Layout, RangeCalendar, Text } from '@ui-cat/components';
 
 export const CalendarThemingShowcase = (): React.ReactElement => {
 

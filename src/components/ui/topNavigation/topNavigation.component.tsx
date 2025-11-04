@@ -88,7 +88,7 @@ type AlignmentProp = 'start' | 'center';
  *
  * In most cases, this is redundant, if [custom theme is configured](guides/branding).
  * ```
- * import { TopNavigation, Text } from '@ui-kitten/components';
+ * import { TopNavigation, Text } from '@ui-cat/components';
  *
  * <TopNavigation
  *   title={evaProps => <Text {...evaProps}>Title</Text>}

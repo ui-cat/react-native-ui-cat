@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Input, InputProps } from '@ui-kitten/components';
+import { Input, InputProps } from '@ui-cat/components';
 
 const useInputState = (initialValue = ''): InputProps => {
   const [value, setValue] = React.useState(initialValue);
@@ -57,4 +57,3 @@ const styles = StyleSheet.create({
     minHeight: 64,
   },
 });
-
