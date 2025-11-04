@@ -1,8 +1,7 @@
 {
-  "name": "@ui-kitten/components",
+  "name": "@ui-cat/components",
   "description": "React Native components based on Eva Design System",
   "version": "5.3.1",
-  "author": "akveo <contact@akveo.com>",
   "license": "MIT",
   "homepage": "https://github.com/ui-cat/react-native-ui-cat#readme",
   "repository": {
@@ -14,6 +13,8 @@
   },
   "keywords": [
     "react-native",
+    "ui-cat",
+    "ui-cats",
     "ui-kitten",
     "ui-kit"
   ],
@@ -21,8 +22,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@eva-design/dss": "^2.2.0",
-    "@eva-design/processor": "^2.2.0",
+    "@ui-cat/eva-design-dss": "^2.2.0",
+    "@ui-cat/eva-design-processor": "^2.2.0",
     "hoist-non-react-statics": "^3.2.1",
     "lodash.merge": "^4.6.1",
     "fecha": "3.0.3"

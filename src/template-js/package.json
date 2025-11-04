@@ -1,6 +1,6 @@
 {
-  "name": "@ui-kitten/template-js",
-  "description": "React Native template project with UI Kitten",
+  "name": "@ui-cat/template-js",
+  "description": "React Native template project with UI Cat",
   "version": "5.3.1",
   "author": "akveo <contact@akveo.com>",
   "license": "MIT",
@@ -12,6 +12,7 @@
   "keywords": [
     "react-native",
     "ui-kitten",
+    "ui-cat",
     "template",
     "boilerplate"
   ],
