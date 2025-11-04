@@ -5,30 +5,30 @@ jobs:
   publish:
     name: Install and publish
     runs-on: ubuntu-latest
-    if: github.event.pull_request.head.repo.full_name == 'akveo/react-native-ui-kitten'
+    if: github.event.pull_request.head.repo.full_name == 'ui-cat/react-native-ui-cat'
     steps:
       - name: Checkout UI Kitten
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
 
-      - name: Setup node version 14
-        uses: actions/setup-node@v2
+      - name: Setup node version 20
+        uses: actions/setup-node@v6
         with:
-          node-version: 14.x
+          node-version: 20
 
       - name: Exclude unused modules
         run: rm -rf docs src/showcases src/template-js src/template-ts
 
       - name: Checkout Eva
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
         with:
-          repository: eva-design/eva
+          repository: ui-cat/eva
           ref: next
           path: ./packages-ci/eva
 
       - name: Checkout Kitten Tricks
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
         with:
-          repository: akveo/kittenTricks
+          repository: ui-cat/kittenTricks
           ref: next
           path: ./packages-ci/kittenTricks
 

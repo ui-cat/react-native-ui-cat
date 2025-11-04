@@ -4,13 +4,13 @@
   "version": "5.3.1",
   "author": "akveo <contact@akveo.com>",
   "license": "MIT",
-  "homepage": "https://github.com/akveo/react-native-ui-kitten#readme",
+  "homepage": "https://github.com/ui-cat/react-native-ui-cat#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akveo/react-native-ui-kitten.git"
+    "url": "git+https://github.com/ui-cat/react-native-ui-cat.git"
   },
   "bugs": {
-    "url": "https://github.com/akveo/react-native-ui-kitten/issues"
+    "url": "https://github.com/ui-cat/react-native-ui-cat/issues"
   },
   "keywords": [
     "react-native",

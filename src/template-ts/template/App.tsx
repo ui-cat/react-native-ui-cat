@@ -3,7 +3,7 @@
  * https://github.com/facebook/react-native
  *
  * Generated with the UI Kitten TypeScript template
- * https://github.com/akveo/react-native-ui-kitten
+ * https://github.com/ui-cat/react-native-ui-cat
  *
  * Documentation: https://akveo.github.io/react-native-ui-kitten/docs
  *

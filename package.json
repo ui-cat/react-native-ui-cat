@@ -4,10 +4,10 @@
   "private": true,
   "license": "MIT",
   "author": "akveo <contact@akveo.com>",
-  "homepage": "https://github.com/akveo/react-native-ui-kitten#readme",
-  "repository": "git+https://github.com/akveo/react-native-ui-kitten.git",
+  "homepage": "https://github.com/ui-cat/react-native-ui-cat#readme",
+  "repository": "git+https://github.com/ui-cat/react-native-ui-cat.git",
   "bugs": {
-    "url": "https://github.com/akveo/react-native-ui-kitten/issues"
+    "url": "https://github.com/ui-cat/react-native-ui-cat/issues"
   },
   "workspaces": {
     "packages": [
