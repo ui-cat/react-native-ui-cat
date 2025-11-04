@@ -14,7 +14,7 @@ import {
 import {
   light,
   mapping,
-} from '@eva-design/eva';
+} from '@ui-cat/eva-design-eva';
 import {
   fireEvent,
   render,
@@ -304,5 +304,3 @@ describe('@menu: component checks', () => {
     expect(onSelect).toBeCalledTimes(2);
   });
 });
-
-

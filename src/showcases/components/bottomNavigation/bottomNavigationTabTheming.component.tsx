@@ -1,5 +1,5 @@
 import React from 'react';
-import { BottomNavigation, BottomNavigationTab, Icon, IconElement } from '@ui-kitten/components';
+import { BottomNavigation, BottomNavigationTab, Icon, IconElement } from '@ui-cat/components';
 
 const PersonIcon = (props): IconElement => (
   <Icon

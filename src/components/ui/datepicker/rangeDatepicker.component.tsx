@@ -15,8 +15,8 @@ import {
   RangeCalendarElement,
   RangeCalendarProps,
 } from '../calendar/rangeCalendar.component';
-import { RenderProp } from '@ui-kitten/components/devsupport';
-import { TextProps } from '@ui-kitten/components';
+import { RenderProp } from '@ui-cat/components/devsupport';
+import { TextProps } from '@ui-cat/components';
 
 export type RangeDatepickerProps<D = Date> = BaseDatepickerProps<D> & RangeCalendarProps<D>;
 export type RangeDatepickerElement<D = Date> = React.ReactElement<RangeDatepickerProps<D>>;
@@ -53,8 +53,8 @@ export type RangeDatepickerElement<D = Date> = React.ReactElement<RangeDatepicke
  * @property {DateService<D>} dateService - Date service that is able to work with a date objects.
  * Defaults to Native Date service that works with JS Date.
  * Allows using different types of date like Moment.js or date-fns.
- * Moment.js service can be provided by installing `@ui-kitten/moment` package.
- * date-fns service can be provided by installing `@ui-kitten/date-fns` package.
+ * Moment.js service can be provided by installing `@ui-cat/moment` package.
+ * date-fns service can be provided by installing `@ui-cat/date-fns` package.
  *
  * @property {boolean} boundingMonth - Whether previous and next months in the current month view should be rendered.
  *

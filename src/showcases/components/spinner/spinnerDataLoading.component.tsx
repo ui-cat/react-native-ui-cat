@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { List, ListItem, Spinner } from '@ui-kitten/components';
+import { List, ListItem, Spinner } from '@ui-cat/components';
 
 interface IListItem {
   title: string;

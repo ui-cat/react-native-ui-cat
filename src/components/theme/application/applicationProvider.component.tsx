@@ -6,12 +6,12 @@
 
 import React from 'react';
 import merge from 'lodash.merge';
-import { SchemaProcessor } from '@eva-design/processor';
+import { SchemaProcessor } from '@ui-cat/eva-design-processor';
 import {
   CustomSchemaType,
   SchemaType,
   ThemeStyleType,
-} from '@eva-design/dss';
+} from '@ui-cat/eva-design-dss';
 import { StyleProvider } from '../style/styleProvider.component';
 import { ThemeProviderProps } from '../theme/themeProvider.component';
 
@@ -42,26 +42,26 @@ interface State {
  * Usually, a router or nested providers.
  *
  * @property {SchemaType} mapping - Mapping for UI Kitten components.
- * This is designed to be provided from any `@eva-design/*` package.
+ * This is designed to be provided from any `@ui-cat/eva-design-*` package.
  * If provided, will be merged with *customMapping* and compiled into styles during the runtime.
- * Can be improved with build-time processing with `@ui-kitten/metro-config` package.
+ * Can be improved with build-time processing with `@ui-cat/metro-config` package.
  *
  * @property {CustomSchemaType} customMapping - Customized mapping.
  *
  * @property {ThemeType} theme - Current theme.
- * Designed to be provided from any `@eva-design/*` package.
+ * Designed to be provided from any `@ui-cat/eva-design-*` package.
  *
  * @property {ThemeStyleType} styles - Styles compiled by bootstrapping Eva packages.
  * If provided, will replace runtime styles processing.
- * Usually, can be provided by `@ui-kitten/metro-config` package.
+ * Usually, can be provided by `@ui-cat/metro-config` package.
  *
  * @overview-example Simple Usage
  * ApplicationProvider is designed to be the root component of the application.
  * It should be rendered **once**, to provide Eva styles for nested components.
  * ```
  * import React from 'react';
- * import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
- * import * as eva from '@eva-design/eva';
+ * import { ApplicationProvider, Layout, Text } from '@ui-cat/components';
+ * import * as eva from '@ui-cat/eva-design-eva';
  *
  * export default () => (
  *   <ApplicationProvider {...eva} theme={eva.light}> // <-- {eva.dark} for dark mode
@@ -77,9 +77,9 @@ interface State {
  * to provide a highly customizable, design system based application.
  * ```
  * import React from 'react';
- * import { ApplicationProvider, IconRegistry, Layout, Text } from '@ui-kitten/components';
- * import { EvaIconsPack } from '@ui-kitten/eva-icons';
- * import * as eva from '@eva-design/eva';
+ * import { ApplicationProvider, IconRegistry, Layout, Text } from '@ui-cat/components';
+ * import { EvaIconsPack } from '@ui-cat/eva-icons';
+ * import * as eva from '@ui-cat/eva-design-eva';
  *
  * export default () => (
  *   <React.Fragment>

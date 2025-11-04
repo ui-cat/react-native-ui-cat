@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Button, Layout } from '@ui-kitten/components';
+import { Button, Layout } from '@ui-cat/components';
 
 export const ButtonGhostShowcase = (): React.ReactElement => (
   <Layout

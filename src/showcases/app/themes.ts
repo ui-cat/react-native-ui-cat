@@ -1,5 +1,5 @@
-import * as eva from '@eva-design/eva';
-import * as material from '@eva-design/material';
+import * as eva from '@ui-cat/eva-design-eva';
+import * as material from '@ui-cat/eva-design-material';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const themes: Record<string, any> = {

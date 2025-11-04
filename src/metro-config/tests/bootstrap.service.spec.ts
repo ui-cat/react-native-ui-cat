@@ -22,7 +22,7 @@ jest.mock('path', () => {
 describe('@bootstrap-service: instance checks', () => {
 
   const evaConfig: EvaConfig = {
-    evaPackage: '@eva-design/eva',
+    evaPackage: '@ui-cat/eva-design-eva',
   };
 
   afterAll(() => {
@@ -38,7 +38,7 @@ describe('@bootstrap-service: instance checks', () => {
     jest.resetAllMocks();
   });
 
-  it('should bootstrap @eva-design/eva package', () => {
+  it('should bootstrap @ui-cat/eva-design-eva package', () => {
     BootstrapService.run(evaConfig);
 
     const outputString = Fs.readFileSync(`node_modules/${evaConfig.evaPackage}/generated.json`).toString();
@@ -49,7 +49,7 @@ describe('@bootstrap-service: instance checks', () => {
     expect(outputAsObject.styles).toBeTruthy();
   });
 
-  it('should bootstrap @eva-design/eva package with custom styles', () => {
+  it('should bootstrap @ui-cat/eva-design-eva package with custom styles', () => {
     BootstrapService.run({ ...evaConfig, customMappingPath: 'src/metro-config/tests/custom-mapping.json' });
 
     const outputString = Fs.readFileSync(`node_modules/${evaConfig.evaPackage}/generated.json`).toString();

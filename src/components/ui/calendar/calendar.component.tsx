@@ -47,8 +47,8 @@ export type CalendarElement<D = Date> = React.ReactElement<CalendarProps<D>>;
  * @property {DateService<D>} dateService - Date service that is able to work with a date objects.
  * Defaults to Native Date service that works with JS Date.
  * Allows using different types of date like Moment.js or date-fns.
- * Moment.js service can be provided by installing `@ui-kitten/moment` package.
- * date-fns service can be provided by installing `@ui-kitten/date-fns` package.
+ * Moment.js service can be provided by installing `@ui-cat/moment` package.
+ * date-fns service can be provided by installing `@ui-cat/date-fns` package.
  *
  * @property {boolean} boundingMonth - Whether previous and next months in the current month view should be rendered.
  *
@@ -119,7 +119,7 @@ export type CalendarElement<D = Date> = React.ReactElement<CalendarProps<D>>;
  *
  * @overview-example CalendarMoment
  * Calendar is able to work with Moment, by configuring date service.
- * In order to use Moment, `@ui-kitten/moment` package is required.
+ * In order to use Moment, `@ui-cat/moment` package is required.
  *
  * @overview-example CalendarCustomDay
  * To render custom cells, `renderDay`, `renderMonth` and `renderYear` properties may be used.

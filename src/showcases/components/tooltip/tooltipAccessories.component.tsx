@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon, IconElement, Tooltip } from '@ui-kitten/components';
+import { Button, Icon, IconElement, Tooltip } from '@ui-cat/components';
 
 const InfoIcon = (props): IconElement => (
   <Icon

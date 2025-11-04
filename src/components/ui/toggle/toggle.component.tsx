@@ -87,7 +87,7 @@ export type ToggleElement = React.ReactElement<ToggleProps>;
  * @overview-example ToggleStyling
  * Toggle and it's inner views can be styled by passing them as function components.
  * ```
- * import { Toggle, Text } from '@ui-kitten/components';
+ * import { Toggle, Text } from '@ui-cat/components';
  *
  * <Toggle>
  *   {evaProps => <Text {...evaProps}>Place your Text</Text>}

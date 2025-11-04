@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Calendar, Text } from '@ui-kitten/components';
+import { Calendar, Text } from '@ui-cat/components';
 
 const LeftArrow = (arrowProps: { onPress: () => void }): React.ReactElement => {
   return (

@@ -35,7 +35,7 @@ import {
 import {
   CalendarViewModeId,
   CalendarViewModes,
-} from '@ui-kitten/components/ui/calendar/type';
+} from '@ui-cat/components/ui/calendar/type';
 
 interface IconStyle extends ImageStyle {
   tintColor?: string;

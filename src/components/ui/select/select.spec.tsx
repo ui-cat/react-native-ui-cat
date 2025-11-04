@@ -19,7 +19,7 @@ import {
 import {
   light,
   mapping,
-} from '@eva-design/eva';
+} from '@ui-cat/eva-design-eva';
 import { Text } from '../text/text.component';
 import { IndexPath } from '../../devsupport';
 import { ApplicationProvider } from '../../theme';
@@ -633,5 +633,3 @@ describe('@select: component checks with groups', () => {
     fireEvent.press(group2Touchable);
   });
 });
-
-

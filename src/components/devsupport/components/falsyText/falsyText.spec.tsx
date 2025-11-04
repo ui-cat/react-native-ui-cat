@@ -4,7 +4,7 @@ import { render } from 'react-native-testing-library';
 import {
   light,
   mapping,
-} from '@eva-design/eva';
+} from '@ui-cat/eva-design-eva';
 import { FalsyText } from './falsyText.component';
 import { ApplicationProvider } from '../../../theme';
 

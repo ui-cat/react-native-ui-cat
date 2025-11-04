@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Layout, RangeDatepicker } from '@ui-kitten/components';
+import { Layout, RangeDatepicker } from '@ui-cat/components';
 
 export const RangeDatepickerSimpleUsageShowcase = (): React.ReactElement => {
 
@@ -26,4 +26,3 @@ const styles = StyleSheet.create({
     minHeight: 360,
   },
 });
-

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleService, Text, useStyleSheet } from '@ui-kitten/components';
+import { StyleService, Text, useStyleSheet } from '@ui-cat/components';
 import { View } from 'react-native';
 
 export const UseStyleSheetSimpleUsageShowcase = (): React.ReactElement => {

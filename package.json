@@ -11,8 +11,7 @@
   },
   "workspaces": {
     "packages": [
-      "src/*",
-      "docs"
+      "src/*"
     ]
   },
   "scripts": {
@@ -21,12 +20,9 @@
     "clean": "rimraf ./dist",
     "lint": "eslint -c .eslintrc.js ./src",
     "test": "jest",
-    "parse-docs": "gulp parse-docs",
-    "view-docs": "cd src/showcases/ && npm run env -- dev && cd ../.. && yarn parse-docs && cd docs && yarn start && cd ..",
     "bump-version": "gulp bump-version && conventional-changelog -i CHANGELOG.md -s",
-    "publish-docs": "npm run parse-docs && gulp publish-docs",
     "publish-packages": "gulp publish-packages",
-    "r": "rm -rf node_modules && rm -rf src/showcases/node_modules && rm -rf docs/node_modules && yarn"
+    "r": "rm -rf node_modules && rm -rf src/showcases/node_modules && yarn"
   },
   "dependencies": {
     "react": "18.1.0",

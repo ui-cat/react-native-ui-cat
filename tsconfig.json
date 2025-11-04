@@ -13,7 +13,7 @@
     "declaration": true,
     "skipLibCheck": true,
     "paths": {
-      "@ui-kitten/*": [
+      "@ui-cat/*": [
         "./src/*"
       ]
     }

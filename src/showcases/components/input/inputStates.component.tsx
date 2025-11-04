@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Input, Layout } from '@ui-kitten/components';
+import { Input, Layout } from '@ui-cat/components';
 
 export const InputStatesShowcase = (): React.ReactElement => {
 
@@ -38,4 +38,3 @@ const styles = StyleSheet.create({
     margin: 2,
   },
 });
-

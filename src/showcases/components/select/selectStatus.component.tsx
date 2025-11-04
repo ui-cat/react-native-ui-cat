@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Layout, Select, SelectItem, SelectProps } from '@ui-kitten/components';
+import { Layout, Select, SelectItem, SelectProps } from '@ui-cat/components';
 
 const useSelectState = (initialState = undefined): SelectProps => {
   const [selectedIndex, setSelectedIndex] = React.useState(initialState);

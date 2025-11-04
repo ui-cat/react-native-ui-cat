@@ -10,7 +10,7 @@ import { ReactTestInstance } from 'react-test-renderer';
 import {
   light,
   mapping,
-} from '@eva-design/eva';
+} from '@ui-cat/eva-design-eva';
 import { ApplicationProvider } from '../../theme';
 import {
   ButtonGroup,

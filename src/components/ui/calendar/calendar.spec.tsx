@@ -18,14 +18,14 @@ import {
 import {
   light,
   mapping,
-} from '@eva-design/eva';
+} from '@ui-cat/eva-design-eva';
 import { ApplicationProvider } from '../../theme';
 import {
   Calendar,
   CalendarProps,
 } from './calendar.component';
 import { CalendarViewModes } from './type';
-import { MomentDateService } from '@ui-kitten/moment';
+import { MomentDateService } from '@ui-cat/moment';
 import { Text } from '../text/text.component';
 
 describe('@calendar: component checks', () => {
