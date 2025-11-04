@@ -22,14 +22,14 @@ jobs:
         uses: actions/checkout@v5
         with:
           repository: ui-cat/eva
-          ref: next
+          ref: main
           path: ./packages-ci/eva
 
       - name: Checkout Kitten Tricks
         uses: actions/checkout@v5
         with:
           repository: ui-cat/kittenTricks
-          ref: next
+          ref: main
           path: ./packages-ci/kittenTricks
 
       - name: Setup Expo
