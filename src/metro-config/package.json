@@ -1,6 +1,6 @@
 {
-  "name": "@ui-kitten/metro-config",
-  "description": "UI Kitten config for Metro Bundler",
+  "name": "@ui-cat/metro-config",
+  "description": "UI Cat config for Metro Bundler",
   "version": "5.3.1",
   "author": "akveo <contact@akveo.com>",
   "license": "MIT",
@@ -19,8 +19,8 @@
     "ui-kitten": "./bin/ui-kitten"
   },
   "devDependencies": {
-    "@eva-design/dss": "^2.2.0",
-    "@eva-design/processor": "^2.2.0",
+    "@ui-cat/eva-design-dss": "^2.2.0",
+    "@ui-cat/eva-design-processor": "^2.2.0",
     "@types/lodash.merge": "ts3.7",
     "chalk": "^3.0.0",
     "commander": "^4.1.1",
