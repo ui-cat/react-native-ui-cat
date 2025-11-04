@@ -1,8 +1,8 @@
 import React from 'react';
 import { reloadAsync } from 'expo-updates';
 import { enableScreens } from 'react-native-screens';
-import * as eva from '@eva-design/eva';
-import * as material from '@eva-design/material';
+import * as eva from '@ui-cat/eva-design-eva';
+import * as material from '@ui-cat/eva-design-material';
 import {
   ApplicationProvider,
   ApplicationProviderProps,

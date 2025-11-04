@@ -6,12 +6,12 @@
 
 import React from 'react';
 import merge from 'lodash.merge';
-import { SchemaProcessor } from '@eva-design/processor';
+import { SchemaProcessor } from '@ui-cat/eva-design-processor';
 import {
   CustomSchemaType,
   SchemaType,
   ThemeStyleType,
-} from '@eva-design/dss';
+} from '@ui-cat/eva-design-dss';
 import { StyleProvider } from '../style/styleProvider.component';
 import { ThemeProviderProps } from '../theme/themeProvider.component';
 
@@ -42,14 +42,14 @@ interface State {
  * Usually, a router or nested providers.
  *
  * @property {SchemaType} mapping - Mapping for UI Kitten components.
- * This is designed to be provided from any `@eva-design/*` package.
+ * This is designed to be provided from any `@ui-cat/eva-design-*` package.
  * If provided, will be merged with *customMapping* and compiled into styles during the runtime.
  * Can be improved with build-time processing with `@ui-kitten/metro-config` package.
  *
  * @property {CustomSchemaType} customMapping - Customized mapping.
  *
  * @property {ThemeType} theme - Current theme.
- * Designed to be provided from any `@eva-design/*` package.
+ * Designed to be provided from any `@ui-cat/eva-design-*` package.
  *
  * @property {ThemeStyleType} styles - Styles compiled by bootstrapping Eva packages.
  * If provided, will replace runtime styles processing.
@@ -61,7 +61,7 @@ interface State {
  * ```
  * import React from 'react';
  * import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
- * import * as eva from '@eva-design/eva';
+ * import * as eva from '@ui-cat/eva-design-eva';
  *
  * export default () => (
  *   <ApplicationProvider {...eva} theme={eva.light}> // <-- {eva.dark} for dark mode
@@ -79,7 +79,7 @@ interface State {
  * import React from 'react';
  * import { ApplicationProvider, IconRegistry, Layout, Text } from '@ui-kitten/components';
  * import { EvaIconsPack } from '@ui-kitten/eva-icons';
- * import * as eva from '@eva-design/eva';
+ * import * as eva from '@ui-cat/eva-design-eva';
  *
  * export default () => (
  *   <React.Fragment>

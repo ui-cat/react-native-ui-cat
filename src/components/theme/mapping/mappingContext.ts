@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeStyleType } from '@eva-design/dss';
+import { ThemeStyleType } from '@ui-cat/eva-design-dss';
 
 const defaultValue: ThemeStyleType = {};
 

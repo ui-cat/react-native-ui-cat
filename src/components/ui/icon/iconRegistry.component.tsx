@@ -30,7 +30,7 @@ export type IconRegistryElement = React.ReactElement<IconRegistryProps>;
  *
  * ```
  * import React from 'react';
- * import * as eva from '@eva-design/eva';
+ * import * as eva from '@ui-cat/eva-design-eva';
  * import { ApplicationProvider, IconRegistry, Layout, Text, Icon, Button } from '@ui-kitten/components';
  * import { EvaIconsPack } from '@ui-kitten/eva-icons'; // <-- Make sure it is installed. npm i @ui-kitten/eva-icons
  *

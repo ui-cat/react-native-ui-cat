@@ -8,7 +8,7 @@ import {
   ControlMetaType,
   ControlThemedStyleType,
   ThemedStyleType,
-} from '@eva-design/dss';
+} from '@ui-cat/eva-design-dss';
 import { StyledComponentProps } from './styled';
 import {
   Interaction,

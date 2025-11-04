@@ -19,7 +19,7 @@ import {
 import {
   light,
   mapping,
-} from '@eva-design/eva';
+} from '@ui-cat/eva-design-eva';
 import { ApplicationProvider } from '../../theme';
 import {
   Tab,
@@ -243,4 +243,3 @@ describe('@tab-view: component checks', () => {
     expect(style.backgroundColor).toEqual('red');
   });
 });
-

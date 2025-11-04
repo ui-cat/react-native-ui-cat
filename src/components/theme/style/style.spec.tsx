@@ -30,7 +30,7 @@ import {
   StyleService,
   useStyleSheet,
 } from './style.service';
-import { ThemeStyleType } from '@eva-design/dss';
+import { ThemeStyleType } from '@ui-cat/eva-design-dss';
 import { ThemeType } from '@ui-kitten/components';
 
 const theme = {

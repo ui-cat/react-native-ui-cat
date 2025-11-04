@@ -2,9 +2,9 @@ const path = require('path');
 const environment = require('./env');
 
 const evaModules = {
-  '@eva-design/eva': path.resolve(environment.EVA_PATH, 'eva'),
-  '@eva-design/material': path.resolve(environment.EVA_PATH, 'material'),
-  '@eva-design/processor': path.resolve(environment.EVA_PATH, 'processor'),
+  '@ui-cat/eva-design-eva': path.resolve(environment.EVA_PATH, 'eva'),
+  '@ui-cat/eva-design-material': path.resolve(environment.EVA_PATH, 'material'),
+  '@ui-cat/eva-design-processor': path.resolve(environment.EVA_PATH, 'processor'),
 };
 
 const frameworkModules = {

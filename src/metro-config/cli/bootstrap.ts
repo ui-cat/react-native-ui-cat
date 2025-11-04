@@ -9,10 +9,10 @@ https://akveo.github.io/react-native-ui-kitten/docs/guides/improving-performance
 const BOOTSTRAP_COMMAND_USAGE = `
 
 - To compile the only Eva package:
-ui-kitten bootstrap @eva-design/eva
+ui-kitten bootstrap @ui-cat/eva-design-eva
 
 - To compile Eva package by merging it with another mapping:
-ui-kitten bootstrap @eva-design/eva ./path-to/mapping.json
+ui-kitten bootstrap @ui-cat/eva-design-eva ./path-to/mapping.json
 `;
 
 // eslint-disable-next-line no-restricted-syntax

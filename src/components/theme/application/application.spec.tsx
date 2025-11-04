@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-native-testing-library';
-import * as eva from '@eva-design/eva';
+import * as eva from '@ui-cat/eva-design-eva';
 import { ApplicationProvider } from './applicationProvider.component';
 
 it('should be able to provide styles to all `styled` components in the library', () => {
@@ -40,5 +40,3 @@ it('should be able to provide styles to all `styled` components in the library',
   expect(styleKeys).toContain('TopNavigation');
   expect(styleKeys).toContain('TopNavigationAction');
 });
-
-

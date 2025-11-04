@@ -16,7 +16,7 @@ import { ReactTestInstance } from 'react-test-renderer';
 import {
   light,
   mapping,
-} from '@eva-design/eva';
+} from '@ui-cat/eva-design-eva';
 import { TouchableWeb } from '../../devsupport';
 import { ApplicationProvider } from '../../theme';
 import {

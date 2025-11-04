@@ -25,8 +25,8 @@ import {
   ThemeType,
 } from './theme.service';
 import { StyleProvider } from '../style/styleProvider.component';
-import { mapping } from '@eva-design/eva';
-import { ThemeStyleType } from '@eva-design/dss';
+import { mapping } from '@ui-cat/eva-design-eva';
+import { ThemeStyleType } from '@ui-cat/eva-design-dss';
 
 const theme = {
   defaultColor: '#000000',
