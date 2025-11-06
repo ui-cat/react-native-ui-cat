@@ -1,7 +1,7 @@
 {
   "name": "@ui-cat/template-ts",
   "description": "React Native template project with UI Cat and TypeScript",
-  "version": "5.3.1",
+  "version": "5.3.1.1",
   "license": "MIT",
   "homepage": "https://github.com/ui-cat/react-native-ui-cat#readme",
   "repository": {
