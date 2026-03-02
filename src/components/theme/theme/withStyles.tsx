@@ -49,9 +49,8 @@ export const withStyles = <P extends object, S>(Component: React.ComponentType<P
 
   type WrappingProps = WrappedProps;
   type WrappedProps = ThemedComponentProps<S> & P;
-  type WrappingElementType = React.ReactElement<WrappingProps>;
   type WrappedElementInstance = React.ReactInstance;
-  type WrapperProps = WrappingProps & {forwardedRef?: React.Ref<WrappedElementInstance>;};
+  type WrapperProps = WrappingProps & { forwardedRef?: React.Ref<WrappedElementInstance> };
 
   class Wrapper extends React.PureComponent<WrapperProps> {
 
@@ -87,17 +86,15 @@ export const withStyles = <P extends object, S>(Component: React.ComponentType<P
     }
   }
 
-  const WrappingElement: React.ForwardRefRenderFunction<
-    WrappedElementInstance,
-    React.PropsWithoutRef<WrappingProps>
-  > = (props, ref) => {
-    return (
-      <Wrapper
-        {...(props as WrappingProps)}
-        forwardedRef={ref}
-      />
-    );
-  };
+  const WrappingElement: React.ForwardRefRenderFunction<WrappedElementInstance, React.PropsWithoutRef<WrappingProps>> =
+    (props, ref) => {
+      return (
+        <Wrapper
+          {...(props as WrappingProps)}
+          forwardedRef={ref}
+        />
+      );
+    };
 
 
   const ThemedComponent = React.forwardRef<WrappedElementInstance, WrappingProps>(WrappingElement);
