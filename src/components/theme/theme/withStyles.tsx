@@ -11,10 +11,6 @@ import { ThemeType } from './theme.service';
 import { Styles } from '../style/style.service';
 import { EvaProp } from '../style/styled';
 
-interface PrivateProps<T> {
-  forwardedRef?: React.Ref<T>;
-}
-
 export interface ThemedComponentProps<T extends Styles<T>> {
   eva?: EvaProp;
 }
