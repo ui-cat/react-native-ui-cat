@@ -41,12 +41,12 @@ const INDICATOR_WIDTH = 6;
 @styled('Popover')
 export class PopoverView extends React.Component<PopoverViewProps> {
 
-  private containerRef = React.createRef<any>();
+  private containerRef = React.createRef<React.ElementRef<typeof View>>();
 
   /**
    * Returns underlying host component ref (used by MeasureElement on web).
    */
-  public getNode = (): any => {
+  public getNode = (): unknown => {
     return this.containerRef.current;
   };
 

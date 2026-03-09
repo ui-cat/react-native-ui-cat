@@ -31,12 +31,12 @@ export type TouchableWithoutFeedbackElement = React.ReactElement<TouchableWithou
  */
 export class TouchableWithoutFeedback extends React.Component<TouchableWithoutFeedbackProps> {
 
-  private touchableRef = React.createRef<any>();
+  private touchableRef = React.createRef<React.ElementRef<typeof TouchableOpacity>>();
 
   /**
    * Returns underlying host component ref (used by MeasureElement on web).
    */
-  public getNode = (): any => {
+  public getNode = (): unknown => {
     return this.touchableRef.current;
   };
 

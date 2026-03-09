@@ -6,6 +6,7 @@
 
 import React from 'react';
 import {
+  LayoutChangeEvent,
   Platform,
   UIManager,
   StatusBar,
@@ -46,9 +47,25 @@ export type MeasuringElement = React.ReactElement;
  */
 export const MeasureElement: React.FC<MeasureElementProps> = (props): MeasuringElement => {
 
-  const ref = React.useRef<any>(null);
+  const ref = React.useRef<unknown>(null);
   const rafId = React.useRef<number | null>(null);
   const retryCount = React.useRef<number>(0);
+
+  const hasGetNode = (value: unknown): value is { getNode: () => unknown } => {
+    return typeof (value as { getNode?: unknown } | null)?.getNode === 'function';
+  };
+
+  const unwrapCurrent = (value: unknown): unknown => {
+    if (value && typeof value === 'object' && 'current' in value) {
+      return (value as { current?: unknown }).current;
+    }
+
+    return value;
+  };
+
+  const hasGetBoundingClientRect = (value: unknown): value is { getBoundingClientRect: () => DOMRect } => {
+    return typeof (value as { getBoundingClientRect?: unknown } | null)?.getBoundingClientRect === 'function';
+  };
 
   const bindToWindow = (frame: Frame, window: Frame): Frame => {
     if (frame.origin.x < window.size.width) {
@@ -103,14 +120,16 @@ export const MeasureElement: React.FC<MeasureElementProps> = (props): MeasuringE
     props.onMeasure(frame);
   };
 
-  const getMeasureTarget = (target: any): any => {
+  const getMeasureTarget = (target: unknown): unknown => {
     if (!target) {
       return null;
     }
+
     // Some RN components on web expose getNode() returning the host node.
-    if (typeof target.getNode === 'function') {
+    if (hasGetNode(target)) {
       return target.getNode();
     }
+
     return target;
   };
 
@@ -122,8 +141,9 @@ export const MeasureElement: React.FC<MeasureElementProps> = (props): MeasuringE
 
     // RN Web doesn't support findNodeHandle; measure directly from the DOM node when possible.
     if (Platform.OS === 'web') {
-      const domNode = target?.getBoundingClientRect ? target : target?.current;
-      if (domNode?.getBoundingClientRect) {
+      const domNode = hasGetBoundingClientRect(target) ? target : unwrapCurrent(target);
+
+      if (hasGetBoundingClientRect(domNode)) {
         const rect = domNode.getBoundingClientRect();
         onUIManagerMeasure(rect.left, rect.top, rect.width, rect.height);
         return;
@@ -131,8 +151,9 @@ export const MeasureElement: React.FC<MeasureElementProps> = (props): MeasuringE
     }
 
     // Native platforms (and some web implementations) support UIManager.measureInWindow with a host handle.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (UIManager as any).measureInWindow(target, onUIManagerMeasure);
+    (UIManager as unknown as {
+      measureInWindow: (node: unknown, callback: (x: number, y: number, w: number, h: number) => void) => void;
+    }).measureInWindow(target, onUIManagerMeasure);
   };
 
   React.useLayoutEffect(() => {
@@ -152,9 +173,9 @@ export const MeasureElement: React.FC<MeasureElementProps> = (props): MeasuringE
     };
   }, []);
 
-  const childOnLayout = (props.children as any).props?.onLayout;
-  const onLayout = (...args: any[]): void => {
-    childOnLayout?.(...args);
+  const childOnLayout = (props.children.props as { onLayout?: (event: LayoutChangeEvent) => void }).onLayout;
+  const onLayout = (event: LayoutChangeEvent): void => {
+    childOnLayout?.(event);
     measureSelf();
   };
 
