@@ -6,7 +6,7 @@
 
 import React from 'react';
 import {
-  findNodeHandle,
+  Platform,
   UIManager,
   StatusBar,
 } from 'react-native';
@@ -46,7 +46,9 @@ export type MeasuringElement = React.ReactElement;
  */
 export const MeasureElement: React.FC<MeasureElementProps> = (props): MeasuringElement => {
 
-  const ref = React.useRef();
+  const ref = React.useRef<any>(null);
+  const rafId = React.useRef<number | null>(null);
+  const retryCount = React.useRef<number>(0);
 
   const bindToWindow = (frame: Frame, window: Frame): Frame => {
     if (frame.origin.x < window.size.width) {
@@ -63,26 +65,98 @@ export const MeasureElement: React.FC<MeasureElementProps> = (props): MeasuringE
     return bindToWindow(boundFrame, window);
   };
 
+  const scheduleRemeasure = (): void => {
+    if (retryCount.current >= 10) {
+      return;
+    }
+    retryCount.current += 1;
+
+    if (rafId.current != null) {
+      return;
+    }
+
+    // On web, layout/DOM measurements can be 0 until the next paint.
+    // Using rAF prevents tight recursion loops and plays nicer with concurrent rendering.
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore: requestAnimationFrame exists on web
+    const requestFrame = globalThis?.requestAnimationFrame;
+    if (typeof requestFrame === 'function') {
+      rafId.current = requestFrame(() => {
+        rafId.current = null;
+        measureSelf();
+      });
+    } else {
+      // Fallback for non-web environments
+      setTimeout(measureSelf, 0);
+    }
+  };
+
   const onUIManagerMeasure = (x: number, y: number, w: number, h: number): void => {
     if (!w && !h) {
-      measureSelf();
-    } else {
-      const originY = props.shouldUseTopInsets ? y + StatusBar.currentHeight || 0 : y;
-      const frame: Frame = bindToWindow(new Frame(x, originY, Math.floor(w), Math.floor(h)), Frame.window());
-      props.onMeasure(frame);
+      scheduleRemeasure();
+      return;
     }
+
+    retryCount.current = 0;
+    const originY = props.shouldUseTopInsets ? y + (StatusBar.currentHeight || 0) : y;
+    const frame: Frame = bindToWindow(new Frame(x, originY, Math.floor(w), Math.floor(h)), Frame.window());
+    props.onMeasure(frame);
+  };
+
+  const getMeasureTarget = (target: any): any => {
+    if (!target) {
+      return null;
+    }
+    // Some RN components on web expose getNode() returning the host node.
+    if (typeof target.getNode === 'function') {
+      return target.getNode();
+    }
+    return target;
   };
 
   const measureSelf = (): void => {
-    const node: number = findNodeHandle(ref.current);
-    if (node) {
-      UIManager.measureInWindow(node, onUIManagerMeasure);
+    const target = getMeasureTarget(ref.current);
+    if (!target) {
+      return;
     }
+
+    // RN Web doesn't support findNodeHandle; measure directly from the DOM node when possible.
+    if (Platform.OS === 'web') {
+      const domNode = target?.getBoundingClientRect ? target : target?.current;
+      if (domNode?.getBoundingClientRect) {
+        const rect = domNode.getBoundingClientRect();
+        onUIManagerMeasure(rect.left, rect.top, rect.width, rect.height);
+        return;
+      }
+    }
+
+    // Native platforms (and some web implementations) support UIManager.measureInWindow with a host handle.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (UIManager as any).measureInWindow(target, onUIManagerMeasure);
   };
 
-  if (props.force) {
-    measureSelf();
-  }
+  React.useLayoutEffect(() => {
+    if (props.force) {
+      measureSelf();
+    }
+  });
 
-  return React.cloneElement(props.children, { ref, onLayout: measureSelf });
+  React.useEffect(() => {
+    return () => {
+      if (rafId.current != null) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore: cancelAnimationFrame exists on web
+        globalThis?.cancelAnimationFrame?.(rafId.current);
+        rafId.current = null;
+      }
+    };
+  }, []);
+
+  const childOnLayout = (props.children as any).props?.onLayout;
+  const onLayout = (...args: any[]): void => {
+    childOnLayout?.(...args);
+    measureSelf();
+  };
+
+  return React.cloneElement(props.children, { ref, onLayout });
 };
