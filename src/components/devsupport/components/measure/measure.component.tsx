@@ -67,6 +67,12 @@ export const MeasureElement: React.FC<MeasureElementProps> = (props): MeasuringE
     return typeof (value as { getBoundingClientRect?: unknown } | null)?.getBoundingClientRect === 'function';
   };
 
+  const hasMeasureInWindow = (value: unknown): value is {
+    measureInWindow: (callback: (x: number, y: number, w: number, h: number) => void) => void;
+  } => {
+    return typeof (value as { measureInWindow?: unknown } | null)?.measureInWindow === 'function';
+  };
+
   const bindToWindow = (frame: Frame, window: Frame): Frame => {
     if (frame.origin.x < window.size.width) {
       return frame;
@@ -150,10 +156,15 @@ export const MeasureElement: React.FC<MeasureElementProps> = (props): MeasuringE
       }
     }
 
-    // Native platforms (and some web implementations) support UIManager.measureInWindow with a host handle.
+    if (hasMeasureInWindow(target)) {
+      target.measureInWindow(onUIManagerMeasure);
+      return;
+    }
+
+    // Fallback for older React Native implementations that still expose the UIManager API.
     (UIManager as unknown as {
-      measureInWindow: (node: unknown, callback: (x: number, y: number, w: number, h: number) => void) => void;
-    }).measureInWindow(target, onUIManagerMeasure);
+      measureInWindow?: (node: unknown, callback: (x: number, y: number, w: number, h: number) => void) => void;
+    }).measureInWindow?.(target, onUIManagerMeasure);
   };
 
   React.useLayoutEffect(() => {
