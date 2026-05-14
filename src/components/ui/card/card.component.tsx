@@ -99,11 +99,6 @@ export class Card extends React.Component<CardProps> {
     this.props.onPressOut?.(event);
   };
 
-  private handlePressOut = (event: GestureResponderEvent): void => {
-    this.props.eva.dispatch([]);
-    this.props.onPressOut?.(event);
-  };
-
   private getComponentStyle = (source: StyleType): StyleType => {
     const {
       bodyPaddingVertical,
@@ -154,7 +149,7 @@ export class Card extends React.Component<CardProps> {
         disabled={this.props.disabled}
         style={[styles.container, evaStyle.container, style]}
         onPressIn={this.onPressIn}
-        onPressOut={this.handlePressOut}
+        onPressOut={this.onPressOut}
       >
         <FalsyFC
           style={evaStyle.accent}
