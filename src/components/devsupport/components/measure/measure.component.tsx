@@ -6,7 +6,7 @@
 
 import React from 'react';
 import {
-  LayoutChangeEvent,
+  findNodeHandle,
   Platform,
   UIManager,
   StatusBar,
@@ -45,33 +45,19 @@ export type MeasuringElement = React.ReactElement;
  * but `force` property may be used to measure any time it's needed.
  * DON'T USE THIS FLAG IF THE COMPONENT RENDERS FIRST TIME OR YOU KNOW `onLayout` WILL BE CALLED.
  */
-export const MeasureElement: React.FC<MeasureElementProps> = (props): MeasuringElement => {
+export const MeasureElement: React.FC<MeasureElementProps> = ({
+  force,
+  shouldUseTopInsets = false,
+  onMeasure,
+  children,
+}): MeasuringElement => {
 
-  const ref = React.useRef<unknown>(null);
-  const rafId = React.useRef<number | null>(null);
-  const retryCount = React.useRef<number>(0);
-
-  const hasGetNode = (value: unknown): value is { getNode: () => unknown } => {
-    return typeof (value as { getNode?: unknown } | null)?.getNode === 'function';
-  };
-
-  const unwrapCurrent = (value: unknown): unknown => {
-    if (value && typeof value === 'object' && 'current' in value) {
-      return (value as { current?: unknown }).current;
-    }
-
-    return value;
-  };
-
-  const hasGetBoundingClientRect = (value: unknown): value is { getBoundingClientRect: () => DOMRect } => {
-    return typeof (value as { getBoundingClientRect?: unknown } | null)?.getBoundingClientRect === 'function';
-  };
-
-  const hasMeasureInWindow = (value: unknown): value is {
-    measureInWindow: (callback: (x: number, y: number, w: number, h: number) => void) => void;
-  } => {
-    return typeof (value as { measureInWindow?: unknown } | null)?.measureInWindow === 'function';
-  };
+  const ref = React.useRef({} as any);
+  // On web, store the actual DOM element from the onLayout event target.
+  // This is needed because ref.current may be a class component instance
+  // (e.g., TouchableWeb) rather than a DOM element, and getBoundingClientRect
+  // only exists on DOM elements.
+  const webDomNodeRef = React.useRef<HTMLElement | null>(null);
 
   const bindToWindow = (frame: Frame, window: Frame): Frame => {
     if (frame.origin.x < window.size.width) {
@@ -81,114 +67,85 @@ export const MeasureElement: React.FC<MeasureElementProps> = (props): MeasuringE
     const boundFrame: Frame = new Frame(
       frame.origin.x - window.size.width,
       frame.origin.y,
-      Math.floor(frame.size.width),
-      Math.floor(frame.size.height),
+      frame.size.width,
+      frame.size.height,
     );
 
     return bindToWindow(boundFrame, window);
   };
 
-  const scheduleRemeasure = (): void => {
-    if (retryCount.current >= 10) {
-      return;
-    }
-    retryCount.current += 1;
-
-    if (rafId.current != null) {
-      return;
-    }
-
-    // On web, layout/DOM measurements can be 0 until the next paint.
-    // Using rAF prevents tight recursion loops and plays nicer with concurrent rendering.
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore: requestAnimationFrame exists on web
-    const requestFrame = globalThis?.requestAnimationFrame;
-    if (typeof requestFrame === 'function') {
-      rafId.current = requestFrame(() => {
-        rafId.current = null;
-        measureSelf();
-      });
-    } else {
-      // Fallback for non-web environments
-      setTimeout(measureSelf, 0);
-    }
-  };
-
   const onUIManagerMeasure = (x: number, y: number, w: number, h: number): void => {
     if (!w && !h) {
-      scheduleRemeasure();
-      return;
+      if (Platform.OS === 'web') {
+        // On web, getBoundingClientRect is synchronous, so recursive measureSelf
+        // would cause an infinite loop. Schedule retry on next animation frame.
+        requestAnimationFrame(() => measureSelf());
+      } else {
+        measureSelf();
+      }
+    } else {
+      const originY = shouldUseTopInsets ? y + (StatusBar.currentHeight || 0) : y;
+      const frame: Frame = bindToWindow(new Frame(x, originY, w, h), Frame.window());
+      onMeasure(frame);
     }
-
-    retryCount.current = 0;
-    const originY = props.shouldUseTopInsets ? y + (StatusBar.currentHeight || 0) : y;
-    const frame: Frame = bindToWindow(new Frame(x, originY, Math.floor(w), Math.floor(h)), Frame.window());
-    props.onMeasure(frame);
   };
 
-  const getMeasureTarget = (target: unknown): unknown => {
-    if (!target) {
-      return null;
+  // Get a DOM element for measurement on web.
+  // Prefers ref.current if it's a DOM element (forwardRef components),
+  // falls back to the DOM node captured from onLayout events (class components).
+  const getWebDomElement = (): HTMLElement | null => {
+    const current = ref.current;
+    if (current && typeof current.getBoundingClientRect === 'function') {
+      return current as unknown as HTMLElement;
     }
-
-    // Some RN components on web expose getNode() returning the host node.
-    if (hasGetNode(target)) {
-      return target.getNode();
-    }
-
-    return target;
+    return webDomNodeRef.current;
   };
 
   const measureSelf = (): void => {
-    const target = getMeasureTarget(ref.current);
-    if (!target) {
-      return;
-    }
-
-    // RN Web doesn't support findNodeHandle; measure directly from the DOM node when possible.
     if (Platform.OS === 'web') {
-      const domNode = hasGetBoundingClientRect(target) ? target : unwrapCurrent(target);
-
-      if (hasGetBoundingClientRect(domNode)) {
-        const rect = domNode.getBoundingClientRect();
+      // On web, use getBoundingClientRect for viewport-relative coordinates.
+      // findNodeHandle is not supported in react-native-web 0.21+.
+      const element = getWebDomElement();
+      if (element) {
+        const rect = element.getBoundingClientRect();
         onUIManagerMeasure(rect.left, rect.top, rect.width, rect.height);
-        return;
+      }
+    } else {
+      const node = findNodeHandle(ref.current);
+      if (node) {
+        UIManager.measureInWindow(node, onUIManagerMeasure);
       }
     }
-
-    if (hasMeasureInWindow(target)) {
-      target.measureInWindow(onUIManagerMeasure);
-      return;
-    }
-
-    // Fallback for older React Native implementations that still expose the UIManager API.
-    (UIManager as unknown as {
-      measureInWindow?: (node: unknown, callback: (x: number, y: number, w: number, h: number) => void) => void;
-    }).measureInWindow?.(target, onUIManagerMeasure);
   };
 
-  React.useLayoutEffect(() => {
-    if (props.force) {
+  // On web, handle onLayout events by extracting the DOM element from the event target.
+  // RNW's onLayout fires via ResizeObserver and provides the actual DOM node as event target,
+  // along with viewport-relative coordinates (left, top) from UIManager.measure.
+  const handleLayoutWeb = (event: any): void => {
+    // Capture the DOM element from the event target for use in force measurements
+    const target = event?.nativeEvent?.target;
+    if (target instanceof HTMLElement) {
+      webDomNodeRef.current = target;
+    }
+    // Use the viewport-relative coordinates from RNW's UIManager.measure
+    const layout = event?.nativeEvent?.layout;
+    if (layout && (layout.width || layout.height)) {
+      const left = layout.left !== undefined ? layout.left : 0;
+      const top = layout.top !== undefined ? layout.top : 0;
+      onUIManagerMeasure(left, top, layout.width, layout.height);
+    } else {
       measureSelf();
     }
-  });
-
-  React.useEffect(() => {
-    return () => {
-      if (rafId.current != null) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore: cancelAnimationFrame exists on web
-        globalThis?.cancelAnimationFrame?.(rafId.current);
-        rafId.current = null;
-      }
-    };
-  }, []);
-
-  const childOnLayout = (props.children.props as { onLayout?: (event: LayoutChangeEvent) => void }).onLayout;
-  const onLayout = (event: LayoutChangeEvent): void => {
-    childOnLayout?.(event);
-    measureSelf();
   };
 
-  return React.cloneElement(props.children, { ref, onLayout });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  React.useLayoutEffect(() => {
+    if (force) {
+      measureSelf();
+    }
+  }, [force, shouldUseTopInsets]);
+
+  const onLayoutHandler = Platform.OS === 'web' ? handleLayoutWeb : measureSelf;
+
+  return React.cloneElement(children, { ref, onLayout: onLayoutHandler });
 };

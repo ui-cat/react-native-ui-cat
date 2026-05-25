@@ -59,7 +59,7 @@ type SelectStyledProps = Overwrite<StyledComponentProps, {
 export interface SelectProps extends TouchableWebProps, SelectStyledProps {
   children?: ChildrenWithProps<SelectItemProps | SelectGroupProps>;
   selectedIndex?: IndexPath | IndexPath[];
-  onSelect?: (index: IndexPath | IndexPath[]) => void;
+  onSelect?: (index: IndexPath | IndexPath[] | null) => void;
   value?: RenderProp<TextProps> | React.ReactText;
   multiSelect?: boolean;
   placeholder?: RenderProp<TextProps> | React.ReactText;

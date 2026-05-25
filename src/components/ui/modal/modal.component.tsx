@@ -86,7 +86,6 @@ export class Modal extends React.PureComponent<ModalProps, State> {
 
   static defaultProps: Partial<ModalProps> = {
     shouldUseContainer: true,
-    supportedOrientations: ['landscape-left', 'landscape-right'],
   };
 
   public state: State = {

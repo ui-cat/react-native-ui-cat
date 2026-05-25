@@ -43,7 +43,6 @@ export class TouchableWithoutFeedback extends React.Component<TouchableWithoutFe
   private createHitSlopInsets = (): Insets => {
     const flatStyle: ViewStyle = StyleSheet.flatten(this.props.style || {});
 
-    // @ts-ignore: `height` is restricted to be a number
     const height: number = typeof flatStyle.height === 'number' ? flatStyle.height : 0;
     const value: number = Math.max(0, 40 - height);
 
