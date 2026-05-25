@@ -175,6 +175,7 @@ export class SelectItem extends React.Component<SelectItemProps> {
     return (
       <TouchableWeb
         {...touchableProps}
+        disabled={disabled}
         style={[styles.container, evaStyle.container, style]}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
