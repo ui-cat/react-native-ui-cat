@@ -2,6 +2,14 @@
 
 Fork of [https://github.com/ui-cat/react-native-ui-cat](https://github.com/ui-cat/react-native-ui-cat).
 
+## Maintainance Hint
+
+We created this fork to make our app compatible with Expo 53.
+
+The library was only updated to fix the components used by our app, so there may still be components that are not yet fully compatible.
+
+We are not planning to invest further in those components, as we do not use them ourselves.
+
 ## Migrate from UI Kitten to UI Cat
 
 Replace `@ui-kitten/` -> `@ui-cat/` in your imports.  
