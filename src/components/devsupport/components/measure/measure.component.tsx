@@ -150,11 +150,15 @@ export const MeasureElement: React.FC<MeasureElementProps> = ({
     }
   };
 
+  // No dependency array on purpose (this matches upstream ui-kitten): while `force` is set the
+  // anchor must be re-measured on every render. Popover keeps `forceMeasure` true for as long as
+  // it is open, so with a dependency array the effect never re-runs and the popover positions
+  // itself from a stale frame (e.g. after scrolling and re-opening a select).
   React.useLayoutEffect(() => {
     if (force) {
       measureSelf();
     }
-  }, [force, shouldUseTopInsets]);
+  });
 
   const onLayoutHandler = Platform.OS === 'web' ? handleLayoutWeb : measureSelf;
 
