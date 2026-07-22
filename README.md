@@ -26,3 +26,12 @@ Packages:
 - `@eva-design/dss` -> `@ui-cat/eva-design-dss`
 - `@eva-design/material` -> `@ui-cat/eva-design-material`
 - `@eva-design/processor` -> `@ui-cat/eva-design-processor`
+
+## Dev Doc
+
+### Publish release
+
+```bash
+npm login --registry=https://registry.npmjs.org/
+npm run publish-packages -- --otp=<otp_code>
+```
